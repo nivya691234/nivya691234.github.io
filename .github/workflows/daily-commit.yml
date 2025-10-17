@@ -1,9 +1,9 @@
-name: 24f1002781@ds.study.iitm.ac.in
+name: Daily Commit Automation for 24f1002781@ds.study.iitm.ac.in
 
 on:
   schedule:
     - cron: '37 6 * * *'  # Run daily at 06:37 UTC (12:07 PM IST)
-  workflow_dispatch:  # Allows manual trigger to run immediately
+  workflow_dispatch:  # Manual trigger
 
 jobs:
   daily-commit:
@@ -17,11 +17,14 @@ jobs:
         run: |
           git config --local user.email "24f1002781@ds.study.iitm.ac.in"
           git config --local user.name "GitHub Actions Bot"
-          
-      - name: Show git config for debugging
+
+      - name: Confirm git config for debugging
         run: git config --list
 
-      - name: Create or update a status file and commit
+      - name: Print email in workflow logs
+        run: echo "Running workflow as 24f1002781@ds.study.iitm.ac.in"
+
+      - name: Create or update daily commit file and commit
         run: |
           echo "Automated daily commit on $(date)" >> daily_commit_status.txt
           git add daily_commit_status.txt
