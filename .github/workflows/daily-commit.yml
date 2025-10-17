@@ -2,7 +2,7 @@ name: Daily Commit Automation
 
 on:
   schedule:
-    - cron: '38 6 * * *'  # Run daily at 06:37 UTC (12:07 PM IST)
+    - cron: '37 6 * * *'  # Run daily at 06:37 UTC (12:07 PM IST)
   workflow_dispatch:  # Allows manual trigger to run immediately
 
 jobs:
@@ -17,10 +17,13 @@ jobs:
         run: |
           git config --local user.email "24f1002781@ds.study.iitm.ac.in"
           git config --local user.name "GitHub Actions Bot"
+          
+      - name: Show git config for debugging
+        run: git config --list
 
       - name: Create or update a status file and commit
         run: |
           echo "Automated daily commit on $(date)" >> daily_commit_status.txt
           git add daily_commit_status.txt
-          git commit -m "chore: daily automated commit [skip ci]" || echo "No changes to commit"
+          git commit -m "chore: daily automated commit [skip ci]" --author="GitHub Actions Bot <24f1002781@ds.study.iitm.ac.in>" || echo "No changes to commit"
           git push
