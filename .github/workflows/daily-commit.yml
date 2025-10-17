@@ -2,8 +2,8 @@ name: Daily Commit Automation
 
 on:
   schedule:
-    - cron: '30 2 * * *'  # Run every day at 02:30 UTC
-  workflow_dispatch: # Enables manual trigger
+    - cron: '38 6 * * *'  # Run daily at 06:37 UTC (12:07 PM IST)
+  workflow_dispatch:  # Allows manual trigger to run immediately
 
 jobs:
   daily-commit:
